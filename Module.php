@@ -1,2 +1,2 @@
 <?php
-include 'src/MkCore/Module.php';
+include 'src/ZendCart/Module.php';

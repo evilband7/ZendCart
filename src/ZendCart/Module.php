@@ -1,32 +1,16 @@
 <?php
-/**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/Zendcart for the canonical source repository
- * @copyright Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
- */
+
 namespace ZendCart;
 
-use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
-use Zendcart\Controller\Plugin\ZendCart;
-
-class Module implements AutoloaderProviderInterface
+class Module
 {
+	public function getConfig()
+	{
+		return include $this->getPath() .'/config/module.config.php';
+	}
 
-    public function getAutoloaderConfig()
-    {
-        return array(
-             'Zend\Loader\StandardAutoloader' => array(
-                 'namespaces' => array(
-                     __NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__
-                 )
-             )
-         );
-    }
-
-    public function getConfig()
-    {
-        return include __DIR__ . '/config/module.config.php';
-    }
+	public function getPath()
+	{
+		return dirname(dirname(__DIR__));
+	}
 }
