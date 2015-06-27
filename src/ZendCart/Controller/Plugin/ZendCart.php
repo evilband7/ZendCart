@@ -59,15 +59,11 @@ class ZendCart extends AbstractPlugin implements EventManagerAwareInterface
      */
     private function _cart($items = array())
     {
-    	return array(
-            'id'		=> $items['id'],
-            'qty' 		=> $items['qty'],
-            'price' 	=> $this->_formatNumber($items['price']),
-            'name' 		=> $items['name'],
-        	'options'	=> isset($items['options']) ? $items['options'] : 0,
-            'date' 	  	=> date('Y-m-d H:i:s', time()),
-            'vat'       => isset($items['vat']) ? $items['vat'] : $this->_config['vat']
-        );
+        $items['price'] = $this->_formatNumber($items['price']);
+        $items['options'] = isset($items['options']) ? $items['options'] : 0;
+        $items['date'] = date('Y-m-d H:i:s', time());
+        $items['vat'] = isset($items['vat']) ? $items['vat'] : $this->_config['vat'];
+        return $items;
     }
 
     /**
