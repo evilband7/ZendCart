@@ -324,7 +324,8 @@ class ZendCart extends AbstractPlugin implements EventManagerAwareInterface
             $items = array();
             foreach ($this->_session->offsetGet('products') as $key => $value)
             {
-                $value['sub_total'] = $this->_formatNumber($value['price'] * $value['qty']);
+                
+                $value['sub_total'] = $this->_formatNumber(doubleval(preg_replace('/,/', '', $value['price'])) * $value['qty']);
                 $items[$key] = $value;
             }
             return $items;
