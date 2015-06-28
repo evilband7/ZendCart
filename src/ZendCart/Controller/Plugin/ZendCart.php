@@ -367,7 +367,7 @@ class ZendCart extends AbstractPlugin implements EventManagerAwareInterface
             $vat = 0;
             foreach ($this->cart() as $key)
             {
-                $item_price = ($key['price'] * $key['qty']);
+                $item_price = ( doubleval(preg_replace('/,/', '', $key['price'])) * $key['qty']);
                 $item_vat   = (($item_price/100)*$key['vat']);
                 // $price =+ ($price + ($key['price'] * $key['qty']));
                 $price += $item_price;
